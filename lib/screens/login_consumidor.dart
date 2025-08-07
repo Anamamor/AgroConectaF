@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'consumidor_home.dart';  // IMPORTA tu pantalla principal de consumidor
 
 class LoginConsumidor extends StatelessWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+
+  LoginConsumidor({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,12 @@ class LoginConsumidor extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green[300]),
               child: Text("Ingresar"),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+MaterialPageRoute(builder: (context) => ConsumidorHome()),
+                );
+              },
             ),
           ],
         ),
