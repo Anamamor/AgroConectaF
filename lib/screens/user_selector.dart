@@ -14,11 +14,13 @@ class UserSelectorScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Logo
-              Image.asset(
-                'assets/iconoagro.webp',
-                height: 120,
+              // Ícono en lugar del logo
+              const Icon(
+                Icons.agriculture,
+                size: 120,
+                color: Color(0xFF387C44), // Verde oscuro
               ),
+
               const SizedBox(height: 20),
 
               // Nombre de la app
