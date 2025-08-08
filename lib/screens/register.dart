@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -17,75 +18,96 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF1F8F5),
+      backgroundColor: const Color(0xFFF0F9F4),
       appBar: AppBar(
-        title: const Text("Registro"),
-        backgroundColor: Colors.green[300],
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.green[100],
         elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.green[800]),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          "Registro",
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Colors.green[800],
+          ),
+        ),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Form(
-          key: _formKey,
-          child: ListView(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Column(
             children: [
-              const Text(
-                "Crea tu cuenta",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF387C44),
+              const SizedBox(height: 10),
+              Icon(Icons.person_add_alt_1_rounded, size: 80, color: Colors.green[400]),
+              const SizedBox(height: 10),
+              Text(
+                "Registro de Usuario",
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.green[800],
                 ),
               ),
               const SizedBox(height: 25),
-
-              // Email
-              _buildTextField(email, "Correo electrónico"),
-
-              // Nombre
-              _buildTextField(name, "Nombre completo"),
-
-              // Edad
-              _buildTextField(age, "Edad", keyboardType: TextInputType.number),
-
-              // Domicilio
-              _buildTextField(address, "Domicilio"),
-
-              // Municipio
-              _buildTextField(municipality, "Municipio"),
-
-              const SizedBox(height: 15),
-
-              // Rol
-              DropdownButtonFormField<String>(
-                value: role,
-                decoration: _inputDecoration("Rol"),
-                items: ["Agricultor", "Consumidor"]
-                    .map((rol) => DropdownMenuItem(value: rol, child: Text(rol)))
-                    .toList(),
-                onChanged: (val) => setState(() => role = val!),
-              ),
-
-              const SizedBox(height: 30),
-
-              // Botón de registro
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[300],
-                  foregroundColor: Colors.white,
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  elevation: 2,
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    _buildTextField(email, "Correo electrónico", icon: Icons.email_outlined),
+                    _buildTextField(name, "Nombre completo", icon: Icons.person_outline),
+                    _buildTextField(age, "Edad", keyboardType: TextInputType.number, icon: Icons.cake_outlined),
+                    _buildTextField(address, "Domicilio", icon: Icons.home_outlined),
+                    _buildTextField(municipality, "Municipio", icon: Icons.location_city_outlined),
+                    const SizedBox(height: 15),
+                    DropdownButtonFormField<String>(
+                      value: role,
+                      decoration: _inputDecoration("Rol", icon: Icons.badge_outlined),
+                      items: ["Agricultor", "Consumidor"]
+                          .map((rol) => DropdownMenuItem(value: rol, child: Text(rol)))
+                          .toList(),
+                      onChanged: (val) => setState(() => role = val!),
+                    ),
+                    const SizedBox(height: 30),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green[600],
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 50),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                        elevation: 4,
+                        shadowColor: Colors.greenAccent,
+                      ),
+                      icon: const Icon(Icons.check_circle_outline),
+                      label: Text(
+                        "Registrarse",
+                        style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w600),
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Registro enviado")),
+                          );
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        "¿Ya tienes cuenta? Inicia sesión",
+                        style: GoogleFonts.poppins(
+                          color: Colors.green[700],
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                child: const Text("Registrarse", style: TextStyle(fontSize: 18)),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Registro enviado")),
-                    );
-                  }
-                },
               ),
             ],
           ),
@@ -94,34 +116,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  // Función para reutilizar los campos de texto
-  Widget _buildTextField(TextEditingController controller, String label, {TextInputType keyboardType = TextInputType.text}) {
+  Widget _buildTextField(TextEditingController controller, String label,
+      {TextInputType keyboardType = TextInputType.text, IconData? icon}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15),
+      padding: const EdgeInsets.only(bottom: 16),
       child: TextFormField(
         controller: controller,
         keyboardType: keyboardType,
-        decoration: _inputDecoration(label),
+        decoration: _inputDecoration(label, icon: icon),
         validator: (value) => value == null || value.isEmpty ? "Este campo es requerido" : null,
       ),
     );
   }
 
-  // Función para decoración moderna y suave
-  InputDecoration _inputDecoration(String label) {
+  InputDecoration _inputDecoration(String label, {IconData? icon}) {
     return InputDecoration(
       labelText: label,
+      prefixIcon: icon != null ? Icon(icon, color: Colors.green[400]) : null,
       filled: true,
       fillColor: Colors.white,
-      labelStyle: const TextStyle(color: Colors.black87),
+      labelStyle: GoogleFonts.poppins(color: Colors.black87),
       contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
       enabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Color(0xFFB0BEC5)),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(14),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Color(0xFF66BB6A), width: 2),
-        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: Color(0xFF43A047), width: 2),
+        borderRadius: BorderRadius.circular(14),
       ),
     );
   }
