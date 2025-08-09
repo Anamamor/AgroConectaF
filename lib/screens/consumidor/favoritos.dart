@@ -16,7 +16,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Favoritos"),
-        backgroundColor: const Color(0xFF689F38),
+        backgroundColor: const Color(0xFFAED581),
       ),
       body: widget.favoritos.isEmpty
           ? const Center(
@@ -37,8 +37,10 @@ class _FavoritosPageState extends State<FavoritosPage> {
                   ),
                   elevation: 4,
                   child: ListTile(
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 10,
+                    ),
                     title: Text(
                       producto.nombre,
                       style: const TextStyle(
@@ -50,7 +52,9 @@ class _FavoritosPageState extends State<FavoritosPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Precio: \$${producto.precio.toStringAsFixed(2)}'),
-                        Text('Disponibles: ${producto.disponibilidad} unidades'),
+                        Text(
+                          'Disponibles: ${producto.disponibilidad} unidades',
+                        ),
                         Text('Agricultor: ${producto.agricultor}'),
                       ],
                     ),
@@ -62,7 +66,8 @@ class _FavoritosPageState extends State<FavoritosPage> {
                           builder: (context) => AlertDialog(
                             title: const Text('Eliminar de favoritos'),
                             content: Text(
-                                '¿Deseas eliminar "${producto.nombre}" de tus favoritos?'),
+                              '¿Deseas eliminar "${producto.nombre}" de tus favoritos?',
+                            ),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(context),

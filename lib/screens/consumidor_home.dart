@@ -19,25 +19,101 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
   String _searchQuery = '';
 
   final List<String> nombresProductos = [
-    'Jitomate', 'Pepino', 'Zanahoria', 'Lechuga', 'Cebolla',
-    'Papa', 'Chile', 'Calabaza', 'Espinaca', 'Ajo',
-    'Fresa', 'Cilantro', 'Nopal', 'Elote', 'Manzana',
-    'Pera', 'Durazno', 'Sandía', 'Melón', 'Tomate',
-    'Brócoli', 'Coliflor', 'Rábano', 'Apio', 'Zucchini',
-    'Frijol', 'Maíz', 'Cebollín', 'Jengibre', 'Café',
-    'Aguacate', 'Banana', 'Limón', 'Naranja', 'Mandarina',
-    'Chayote', 'Calabacita', 'Repollo', 'Hinojo', 'Betabel',
-    'Chícharo', 'Mango', 'Guayaba', 'Papaya', 'Piña',
-    'Chirimoya', 'Durazno', 'Ciruela', 'Granada', 'Cereza',
-    'Uva', 'Coco', 'Nuez', 'Albahaca', 'Menta',
-    'Orégano', 'Perejil', 'Tomillo', 'Salvia', 'Lavanda',
-    'Rábano', 'Berro', 'Col rizada', 'Achicoria', 'Espárrago',
-    'Chícharo', 'Calabaza', 'Zanahoria', 'Cebolla', 'Apio',
-    'Ajo', 'Perejil', 'Cilantro', 'Lechuga', 'Pepino',
-    'Jitomate', 'Espinaca', 'Maíz', 'Frijol', 'Chile',
-    'Papa', 'Nopal', 'Elote', 'Manzana', 'Pera',
-    'Durazno', 'Sandía', 'Melón', 'Tomate', 'Brócoli',
-    'Coliflor', 'Rábano', 'Apio', 'Zucchini', 'Cebollín',
+    'Jitomate',
+    'Pepino',
+    'Zanahoria',
+    'Lechuga',
+    'Cebolla',
+    'Papa',
+    'Chile',
+    'Calabaza',
+    'Espinaca',
+    'Ajo',
+    'Fresa',
+    'Cilantro',
+    'Nopal',
+    'Elote',
+    'Manzana',
+    'Pera',
+    'Durazno',
+    'Sandía',
+    'Melón',
+    'Tomate',
+    'Brócoli',
+    'Coliflor',
+    'Rábano',
+    'Apio',
+    'Zucchini',
+    'Frijol',
+    'Maíz',
+    'Cebollín',
+    'Jengibre',
+    'Café',
+    'Aguacate',
+    'Banana',
+    'Limón',
+    'Naranja',
+    'Mandarina',
+    'Chayote',
+    'Calabacita',
+    'Repollo',
+    'Hinojo',
+    'Betabel',
+    'Chícharo',
+    'Mango',
+    'Guayaba',
+    'Papaya',
+    'Piña',
+    'Chirimoya',
+    'Durazno',
+    'Ciruela',
+    'Granada',
+    'Cereza',
+    'Uva',
+    'Coco',
+    'Nuez',
+    'Albahaca',
+    'Menta',
+    'Orégano',
+    'Perejil',
+    'Tomillo',
+    'Salvia',
+    'Lavanda',
+    'Rábano',
+    'Berro',
+    'Col rizada',
+    'Achicoria',
+    'Espárrago',
+    'Chícharo',
+    'Calabaza',
+    'Zanahoria',
+    'Cebolla',
+    'Apio',
+    'Ajo',
+    'Perejil',
+    'Cilantro',
+    'Lechuga',
+    'Pepino',
+    'Jitomate',
+    'Espinaca',
+    'Maíz',
+    'Frijol',
+    'Chile',
+    'Papa',
+    'Nopal',
+    'Elote',
+    'Manzana',
+    'Pera',
+    'Durazno',
+    'Sandía',
+    'Melón',
+    'Tomate',
+    'Brócoli',
+    'Coliflor',
+    'Rábano',
+    'Apio',
+    'Zucchini',
+    'Cebollín',
   ];
 
   final List<String> nombresAgricultores = [
@@ -91,7 +167,11 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
         });
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('No hay más unidades disponibles de ${producto.nombre}')),
+          SnackBar(
+            content: Text(
+              'No hay más unidades disponibles de ${producto.nombre}',
+            ),
+          ),
         );
       }
     } else {
@@ -101,9 +181,9 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
           _carrito.add(ProductoConCantidad(producto: producto, cantidad: 1));
         });
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Producto no disponible')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Producto no disponible')));
       }
     }
   }
@@ -132,12 +212,12 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Agroconecta"),
-        backgroundColor: const Color(0xFF689F38),
+        backgroundColor: const Color(0xFFAED581),
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        selectedItemColor: const Color(0xFF689F38),
+        selectedItemColor: const Color(0xFFFFF8E1),
         unselectedItemColor: Colors.grey,
         onTap: (index) {
           setState(() {
@@ -146,8 +226,14 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favoritos'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Carrito'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favoritos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Carrito',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Mensajes'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
         ],
@@ -179,7 +265,10 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
                 prefixIcon: const Icon(Icons.search, color: Color(0xFF689F38)),
                 filled: true,
                 fillColor: Colors.white,
-                contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 0,
+                  horizontal: 15,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide.none,
@@ -193,20 +282,29 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
                 itemBuilder: (context, index) {
                   final producto = productosFiltrados[index];
                   final esFavorito = _favoritos.contains(producto);
-                  final enCarrito = _carrito.any((item) => item.producto == producto);
+                  final enCarrito = _carrito.any(
+                    (item) => item.producto == producto,
+                  );
                   final disponible = producto.disponibilidad > 0;
 
                   return Card(
                     margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ListTile(
-                      title: Text(producto.nombre, style: const TextStyle(fontWeight: FontWeight.bold)),
+                      title: Text(
+                        producto.nombre,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Precio: \$${producto.precio.toStringAsFixed(2)}'),
+                          Text(
+                            'Precio: \$${producto.precio.toStringAsFixed(2)}',
+                          ),
                           Text(
                             'Disponibles: ${producto.disponibilidad} unidades',
-                            style: TextStyle(color: disponible ? Colors.green : Colors.red),
+                            style: TextStyle(
+                              color: disponible ? Colors.green : Colors.red,
+                            ),
                           ),
                           Text('Agricultor: ${producto.agricultor}'),
                         ],
@@ -216,7 +314,9 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
                         children: [
                           IconButton(
                             icon: Icon(
-                              esFavorito ? Icons.favorite : Icons.favorite_border,
+                              esFavorito
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
                               color: esFavorito ? Colors.red : Colors.grey,
                             ),
                             onPressed: () {
@@ -228,17 +328,27 @@ class _ConsumidorHomeState extends State<ConsumidorHome> {
                                 }
                               });
                             },
-                            tooltip: esFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos',
+                            tooltip: esFavorito
+                                ? 'Quitar de favoritos'
+                                : 'Agregar a favoritos',
                           ),
                           IconButton(
                             icon: Icon(
-                              enCarrito ? Icons.shopping_cart : Icons.add_shopping_cart,
+                              enCarrito
+                                  ? Icons.shopping_cart
+                                  : Icons.add_shopping_cart,
                               color: enCarrito
                                   ? Colors.green
-                                  : (disponible ? Colors.grey : Colors.grey.shade400),
+                                  : (disponible
+                                        ? Colors.grey
+                                        : Colors.grey.shade400),
                             ),
-                            onPressed: disponible ? () => _agregarAlCarrito(producto) : null,
-                            tooltip: enCarrito ? 'En el carrito' : 'Agregar al carrito',
+                            onPressed: disponible
+                                ? () => _agregarAlCarrito(producto)
+                                : null,
+                            tooltip: enCarrito
+                                ? 'En el carrito'
+                                : 'Agregar al carrito',
                           ),
                         ],
                       ),

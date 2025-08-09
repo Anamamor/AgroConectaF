@@ -33,13 +33,18 @@ class _CarritoPageState extends State<CarritoPage> {
 
   void _incrementarCantidad(int index) {
     final productoConCantidad = widget.carrito[index];
-    if (productoConCantidad.cantidad < productoConCantidad.producto.disponibilidad) {
+    if (productoConCantidad.cantidad <
+        productoConCantidad.producto.disponibilidad) {
       setState(() {
         productoConCantidad.cantidad++;
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No hay más unidades disponibles de ${productoConCantidad.producto.nombre}')),
+        SnackBar(
+          content: Text(
+            'No hay más unidades disponibles de ${productoConCantidad.producto.nombre}',
+          ),
+        ),
       );
     }
   }
@@ -72,15 +77,13 @@ class _CarritoPageState extends State<CarritoPage> {
   @override
   Widget build(BuildContext context) {
     if (widget.carrito.isEmpty) {
-      return const Center(
-        child: Text("El carrito está vacío."),
-      );
+      return const Center(child: Text("El carrito está vacío."));
     }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Carrito'),
-        backgroundColor: const Color(0xFF689F38),
+        backgroundColor: const Color(0xFFAED581),
       ),
       body: Column(
         children: [
@@ -211,7 +214,8 @@ class _CarritoPageState extends State<CarritoPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: ElevatedButton(
-              onPressed: _formaPagoSeleccionada == null ||
+              onPressed:
+                  _formaPagoSeleccionada == null ||
                       _metodoEntregaSeleccionado == null ||
                       widget.carrito.isEmpty
                   ? null
